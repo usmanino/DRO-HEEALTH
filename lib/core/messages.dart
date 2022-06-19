@@ -14,7 +14,7 @@ void displayErrorMessage({
       : null;
   scaffoldKey.currentState.showSnackBar(
     SnackBar(
-      backgroundColor: kBlackColor,
+      backgroundColor: kDangerColor,
       content: Text(
         error,
         style: GoogleFonts.roboto(

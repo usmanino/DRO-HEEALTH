@@ -1,5 +1,6 @@
 import 'package:dro/controller/Bloc/cubit/cart_cubit.dart';
 import 'package:dro/controller/Bloc/cubit/database_cubit.dart';
+import 'package:dro/core/messages.dart';
 import 'package:dro/core/styles.dart';
 import 'package:dro/core/top_app_bar.dart';
 import 'package:dro/ui/landing/view/bottom.dart';
@@ -24,9 +25,13 @@ class _CartScreenState extends State<CartScreen> {
   static List getME = [];
   static int getAmount = 0;
   num _amount = 0;
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _dialogKey = GlobalKey<State>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -188,27 +193,23 @@ class _CartScreenState extends State<CartScreen> {
                                                 ),
                                               ],
                                             ),
-                                            Container(
-                                              margin: const EdgeInsets.only(
-                                                right: 30.0,
-                                              ),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Container(
-                                                    width: 50,
-                                                    margin:
-                                                        const EdgeInsets.only(
-                                                      right: 10.0,
+                                            const Spacer(),
+                                            Column(
+                                              children: [
+                                                Container(
+                                                  width: 50,
+                                                  height: 35,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                      color: kPrimaryColor,
+                                                      width: 1,
                                                     ),
-                                                    // decoration: BoxDecoration(
-                                                    //   borderRadius: BorderRadius.circular(5.0),
-                                                    //   border: Border.all(
-                                                    //     width: 1.0,
-                                                    //     color: kBlackColor,
-                                                    //   ),
-                                                    // ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                      10,
+                                                    ),
+                                                  ),
+                                                  child: Center(
                                                     child: DropdownButton(
                                                       value: dropdownvalue,
                                                       icon: const Icon(Icons
@@ -233,39 +234,45 @@ class _CartScreenState extends State<CartScreen> {
                                                       },
                                                     ),
                                                   ),
-                                                  const SizedBox(
-                                                    height: 10.0,
-                                                  ),
-                                                  InkResponse(
-                                                    onTap: () {
-                                                      _cartCubit!.removeCart(
-                                                          cart[index].id);
-                                                    },
-                                                    child: Row(
-                                                      children: [
-                                                        SvgPicture.asset(
-                                                            "assets/svgs/remove.svg"),
-                                                        const SizedBox(
-                                                          width: 8.0,
+                                                ),
+                                                const SizedBox(
+                                                  height: 10.0,
+                                                ),
+                                                InkResponse(
+                                                  onTap: () {
+                                                    _cartCubit!.removeCart(
+                                                        cart[index].id);
+                                                    displayErrorMessage(
+                                                      error:
+                                                          "Item removed successfully",
+                                                      context: _dialogKey,
+                                                      scaffoldKey: _scaffoldKey,
+                                                      popStack: false,
+                                                    );
+                                                  },
+                                                  child: Row(
+                                                    children: [
+                                                      SvgPicture.asset(
+                                                          "assets/svgs/remove.svg"),
+                                                      const SizedBox(
+                                                        width: 8.0,
+                                                      ),
+                                                      const Text(
+                                                        "Remove",
+                                                        style: TextStyle(
+                                                          fontFamily:
+                                                              "ProximaNovaFont",
+                                                          fontWeight:
+                                                              FontWeight.w200,
+                                                          color: kPrimaryColor,
+                                                          fontSize: 12.0,
+                                                          letterSpacing: 1.0,
                                                         ),
-                                                        const Text(
-                                                          "Remove",
-                                                          style: TextStyle(
-                                                            fontFamily:
-                                                                "ProximaNovaFont",
-                                                            fontWeight:
-                                                                FontWeight.w200,
-                                                            color:
-                                                                kPrimaryColor,
-                                                            fontSize: 12.0,
-                                                            letterSpacing: 1.0,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
+                                                      ),
+                                                    ],
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
                                           ],
                                         ),
@@ -327,6 +334,12 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                   InkResponse(
                     onTap: () {
+                      displaySuccessMessage(
+                        text: "Checkout Successfully",
+                        context: _dialogKey,
+                        scaffoldKey: _scaffoldKey,
+                        popStack: false,
+                      );
                       // Navigator.pop(context);
                       // Navigator.push(
                       //   context,
