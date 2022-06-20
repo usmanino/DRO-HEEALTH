@@ -1,7 +1,6 @@
-import 'package:dro/controller/Bloc/cubit/cart_cubit.dart';
-import 'package:dro/controller/Bloc/cubit/database_cubit.dart';
 import 'package:dro/controller/Bloc/cubit/suplement_cubit.dart';
 import 'package:dro/core/styles.dart';
+import 'package:dro/ui/pharmacy/pharmacy_screen.dart';
 import 'package:dro/ui/pharmacy/subView/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -118,7 +117,12 @@ class _CartDialogState extends State<CartDialog> {
                   ),
                   InkResponse(
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const PharmacyScreen(),
+                        ),
+                      );
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width - 50,

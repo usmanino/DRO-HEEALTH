@@ -347,51 +347,40 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                 Expanded(
                                                   child: Row(
                                                     children: [
-                                                      Expanded(
-                                                        flex: 2,
+                                                      Text(
+                                                        "${amount ?? state.suplementList[widget.index].amount}",
+                                                        maxLines: 1,
+                                                        style: const TextStyle(
+                                                          fontFamily:
+                                                              "ProximaNovaFont",
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                          color: kBlackColor,
+                                                          fontSize: 27.0,
+                                                          letterSpacing: 1.0,
+                                                          fontStyle:
+                                                              FontStyle.normal,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                          top: 10.0,
+                                                        ),
                                                         child: Text(
-                                                          "${amount ?? state.suplementList[widget.index].amount}",
-                                                          maxLines: 1,
-                                                          style:
-                                                              const TextStyle(
+                                                          ".00",
+                                                          style: TextStyle(
                                                             fontFamily:
                                                                 "ProximaNovaFont",
                                                             fontWeight:
                                                                 FontWeight.w700,
                                                             color: kBlackColor,
-                                                            fontSize: 27.0,
+                                                            fontSize: 18.0,
                                                             letterSpacing: 1.0,
                                                             fontStyle: FontStyle
                                                                 .normal,
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      const Expanded(
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                            top: 10.0,
-                                                          ),
-                                                          child: Text(
-                                                            ".00",
-                                                            style: TextStyle(
-                                                              fontFamily:
-                                                                  "ProximaNovaFont",
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700,
-                                                              color:
-                                                                  kBlackColor,
-                                                              fontSize: 18.0,
-                                                              letterSpacing:
-                                                                  1.0,
-                                                              fontStyle:
-                                                                  FontStyle
-                                                                      .normal,
-                                                            ),
                                                           ),
                                                         ),
                                                       ),
